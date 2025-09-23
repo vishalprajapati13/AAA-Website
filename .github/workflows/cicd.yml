@@ -1,0 +1,61 @@
+name: aaa-cms-website CICD Pipeline
+
+on:
+  push:
+    branches: 
+      - develop
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.18.2
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Generate .env file for develop
+        run: |
+          touch .env
+          echo "BRANCH=develop" >> $GITHUB_ENV
+          echo NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} >> .env
+          echo NEXT_PUBLIC_S3_BUCKET_BASE_URL=${{ secrets.NEXT_PUBLIC_S3_BUCKET_BASE_URL }} >> .env
+          echo NEXT_PUBLIC_WEBSITE_URL=${{ secrets.NEXT_PUBLIC_WEBSITE_URL }} >> .env
+          
+          ls -la
+          cat .env
+
+      - name: npm build
+        run: npm run build
+
+      - name: Deploy to Server - DEV
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.REMOTE_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          SOURCE: './'
+          TARGET: /root/aaa-cms-website
+
+      - name: Execute Remote SSH Commands - DEV
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+          port: 22
+          script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 20.18.2
+            cd /root/aaa-cms-website
+            npm i
+            pm2 stop aaa-cms-website || true
+            pm2 reload aaa-cms-website || pm2 start -n aaa-cms-website npm -- start

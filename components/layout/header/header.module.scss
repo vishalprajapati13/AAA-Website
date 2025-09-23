@@ -1,0 +1,214 @@
+@use "../../../app/variables.scss" as *;
+// Header CSS
+
+.header_main_div {
+  position: relative;
+//   display: none;
+}
+.back_arrow_div {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  z-index: 9;
+  display: flex;
+  cursor: pointer;
+}
+
+.banner {
+  // min-height: 100%;
+  // width: 100%;
+  // background: url('https://i.imgur.com/T57flD5.jpg');
+  // background-size: cover;
+  // display: flex;
+  // align-items: center;
+  // padding: 0px;
+  // color: #fff;
+  // position: relative;
+  // z-index: 9;
+}
+
+.hamburger {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  z-index: 999;
+}
+.bar_icon_flex {
+  height: 14px;
+  width: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bar_icon {
+  display: inline-block;
+  height: 2px;
+  width: 16px;
+  background: $gray-light-color;
+  border-radius: 0px;
+}
+
+.sidebar {
+  height: 100vh;
+  // width: 100%;
+  width: 300px;
+  // background: $white-color;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  // justify-content: center;
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  right: 0;
+  // box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+  padding-top: 60px;
+  // background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.9) 100%);
+  // backdrop-filter: blur(10px);
+
+  &__close {
+    position: absolute;
+    top: 29px;
+    right: 20px;
+    height: 16px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out 0.2s;
+
+    &::before,
+    &::after {
+      content: "";
+      // height: 2px;
+      background: $border-color;
+      width: 8px;
+      display: block;
+      position: absolute;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+  
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    // flex: 1;
+    justify-content: space-around;
+    background: linear-gradient(180deg, rgba(217, 217, 217, 0.5) 2%, rgba(68, 68, 68, 0.5) 50%);
+    padding: 88px 85px;
+    backdrop-filter: blur(10px);
+    row-gap: 14px;
+    z-index: 1;
+
+    a {
+      color: $white-color;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      text-decoration: none;
+    //   transform: translatex(-80%);
+    //   transition: transform 0.4s ease-in-out;
+      text-align: center;
+
+    //   &::before {
+    //     content: "";
+    //     height: 2px;
+    //     background: #898989;
+    //     width: 120px;
+    //     position: absolute;
+    //     bottom: -2px;
+    //     left: 0;
+    //     transform: translatex(-50%);
+    //     opacity: 0;
+    //     transition: transform 0.4s ease-in-out, opacity 0.4s linear;
+    //   }
+
+      &:hover {
+        color: $gray-color;
+        // &::before {
+        //   transform: translatex(0);
+        //   opacity: 1;
+        // }
+      }
+
+    //   @for $i from 1 through 5 {
+    //     &:nth-child(#{$i}) {
+    //       transition-delay: $i * 0.05s;
+    //     }
+    //   }
+    }
+  }
+
+  &__social {
+    display: flex;
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 4px;
+    }
+
+    a,
+    svg {
+      display: inline-block;
+      height: 18px;
+      width: 18px;
+    }
+  }
+}
+
+.menu_control {
+  display: none;
+
+  &:checked {
+    & + .sidebar {
+      transform: translatex(0);
+    }
+
+    & + .sidebar .sidebar__close {
+      // transform: translatex(0) rotate(45deg);
+    }
+
+    // & + .sidebar .sidebar__menu a {
+    //   transform: translatex(0);
+    // }
+  }
+}
+
+// Media Queries
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .header_main_div {
+        display: block;
+    }
+}   
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .back_arrow_div {
+    top: 20px;
+  }
+  .hamburger {
+    top: 20px;
+  }
+}   
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .back_arrow_div {
+    top: 20px;
+  }
+  .hamburger {
+    top: 20px;
+  }
+}   

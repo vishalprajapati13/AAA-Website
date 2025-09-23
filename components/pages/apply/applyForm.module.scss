@@ -1,0 +1,321 @@
+@use "../../../app/variables.scss" as *;
+
+.applySection {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.applyField {
+  margin-bottom: 40px;
+  position: relative;
+
+  label {
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: $gray-color;
+    font-weight: 500;
+  }
+
+  input,
+  textarea {
+    background-color: transparent !important;
+    border: 0px;
+    border-bottom: 1px solid #ffffff;
+    border-radius: 0px;
+    box-shadow: none !important;
+    border-color: #ffffff !important;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-size: 14px;
+    color: $white-color !important;
+    height: 40px;
+    font-weight: 300;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: $white-color !important;
+  }
+
+  .errorText {
+    color: red;
+    margin-top: 0px;
+    font-size: 13px;
+    margin-bottom: 0px;
+    font-weight: 300;
+    position: absolute;
+    bottom: -25px;
+    left: 0px;
+  }
+
+  select {
+    background-color: transparent !important;
+    border: 0px;
+    border-bottom: 1px solid #ffffff;
+    border-radius: 0px;
+    box-shadow: none !important;
+    border-color: #ffffff !important;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-size: 14px;
+    color: $white-color !important;
+    height: 40px;
+    filter: brightness(0) invert(1);
+    font-weight: 300;
+    option {
+      color: #ffffff;
+      font-weight: 300;
+      background: #404144;
+    }
+  }
+}
+
+.submitButton {
+  margin-top: 0px;
+
+  button {
+    transition: 0.3s;
+    background: linear-gradient(
+      90deg,
+      rgba(62, 62, 62, 0.24) 0%,
+      rgba(62, 62, 62, 0.3) 100%
+    ) !important;
+    padding: 6px 70px;
+    border: 0.25px solid #969696 !important;
+    border-radius: 4px;
+    color: #969696;
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 0px;
+    text-decoration: none;
+    font-weight: 400;
+    min-width: 100px;
+    text-align: center;
+
+    &:hover {
+      color: $white-color;
+    }
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.resetButton {
+  margin-top: 0px;
+
+  button {
+    transition: 0.3s;
+    background: linear-gradient(
+      90deg,
+      rgba(62, 62, 62, 0.24) 0%,
+      rgba(62, 62, 62, 0.3) 100%
+    ) !important;
+    padding: 6px 70px;
+    border: 0.25px solid #969696 !important;
+    border-radius: 4px;
+    color: #969696;
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 0px;
+    text-decoration: none;
+    font-weight: 400;
+    min-width: 100px;
+    text-align: center;
+
+    &:hover {
+      color: $white-color;
+    }
+  }
+}
+
+.applyform_textarea {
+  textarea {
+    height: 80px;
+    border: 1px solid #ffffff;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+.mobileOnly {
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.contains_info_div {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.icon_div {
+  text-align: center;
+  margin-bottom: 25px;
+
+  a {
+    display: block;
+    color: $white-color;
+    text-decoration: none;
+    margin-top: 16px;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+.applySection_bottom_btn {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .applySection {
+    padding-left: 38px;
+    padding-right: 38px;
+  }
+
+  .contains_info_div {
+    position: relative;
+    margin-bottom: 36px;
+  }
+
+  .icon_div {
+    text-align: center;
+    margin-bottom: 16px;
+
+    img {
+      height: 18px;
+      width: 18px;
+    }
+
+    a {
+      font-size: 12px;
+    }
+  }
+
+  .applyField {
+    margin-bottom: 20px;
+
+    label {
+      font-size: 11px;
+    }
+
+    input,
+    textarea {
+      font-size: 12px;
+      min-height: 30px;
+      height: auto;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: $primary-color;
+    }
+
+    .errorText {
+      font-size: 12px;
+      bottom: -20px;
+    }
+  }
+
+  .submitButton {
+    margin-top: 0px;
+
+    button {
+      font-size: 12px;
+      padding: 6px 40px;
+      line-height: 14px;
+      min-width: 100%;
+    }
+  }
+  .applyform_textarea {
+    textarea {
+      height: 49px !important;
+    }
+  }
+  .applyField select {
+    font-size: 12px;
+    height: 31px;
+  }
+  .resetButton {
+    margin-top: 0px;
+
+    button {
+      font-size: 12px;
+      padding: 6px 40px;
+      line-height: 14px;
+      min-width: 100%;
+    }
+  }
+
+  .upload_note_text {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .applyField {
+    .errorText {
+      font-size: 12px;
+    }
+  }
+}
+
+// Custom Upload Styles
+.customUpload {
+  border: 1px solid #ccc;
+  padding: 12px 20px;
+  cursor: pointer;
+  // border-radius: 5px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: $primary-color; /* Replace with your primary color variable */
+  }
+
+  .uploadContent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .uploadIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .uploadText {
+    font-weight: 300;
+    color: $white-color; /* Replace with your white color variable */
+  }
+
+  .divider {
+    color: $white-color; /* Replace with your white color variable */
+    font-weight: 300;
+  }
+
+  .dragText {
+    color: #bbb;
+    font-size: 13px;
+  }
+}
+
+.hiddenInput {
+  display: none;
+}
