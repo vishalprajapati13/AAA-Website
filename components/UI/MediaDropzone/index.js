@@ -25,7 +25,7 @@ export default function MediaDropzone({
   uploadType,
   noteMsg = "",
 }) {
-  const { uploadJobFileToS3, removeUploadedFileFromS3 } = useS3Uploader();
+  const { uploadFileToS3, removeUploadedFileFromS3 } = useS3Uploader();
   const [fileName, setFileName] = useState(null);
   const [docsName, setDocsName] = useState(null);
   const [localError, setLocalError] = useState("");
@@ -86,7 +86,7 @@ export default function MediaDropzone({
       }
 
       try {
-        const uploadedUrl = await uploadJobFileToS3(file, uploadType);
+        const uploadedUrl = await uploadFileToS3(file, uploadType);
         if (uploadedUrl) {
           const fullUrl = `${NEXT_PUBLIC_S3_BASE_URL}/${uploadedUrl}`;
           setFileName({ url: fullUrl, name: file.name, type: file.type });
@@ -104,7 +104,7 @@ export default function MediaDropzone({
       maxSize,
       removeUploadedFileFromS3,
       uploadType,
-      uploadJobFileToS3,
+      uploadFileToS3,
     ]
   );
 
